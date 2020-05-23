@@ -71,7 +71,7 @@
 			
 			<br/>
 			<br/>
-			<p>2.请输入筛选责任人前缀（若不填则获取全部）：</p>
+			<p>2.请输入筛选责任人（支持模糊搜索，若不填则获取全部）：</p>
 			<br/>
             <input type="text" id="filter" placeholder="如：松原">
             <br/>
@@ -145,8 +145,10 @@
                         for(var j=0; j<rows.length; j++) {
                             var name = rows['责任人'].replace(/\s*/g,"");
                             var carNumer = rows['车牌'].replace(/\s*/g,"");
-                            if (name.startsWith(filter)) {
+							
+                            if (name.search(filter) != -1) {
                                 var set = map.get(name);
+								
                                 if (set == undefined) {
                                     set = new Set();
                                     map.set(name, set);
@@ -165,7 +167,7 @@
                     } else if (typeof(rows)=="object") {
                         var name = rows['责任人'].replace(/\s*/g,"");
                         var carNumer = rows['车牌'].replace(/\s*/g,"");
-                        if (name.startsWith(filter)) {
+                        if (name.search(filter) != -1) {
                                 var set = map.get(name);
                                 if (set == undefined) {
                                     set = new Set();
